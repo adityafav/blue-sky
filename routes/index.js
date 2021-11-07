@@ -4,10 +4,7 @@ const { MongoClient } = require("mongodb");
 
 require("dotenv").config();
 
-const client = new MongoClient(
-  process.env.MONGO_URL ||
-    "mongodb+srv://aditya:aditya@cluster0.3xhxi.mongodb.net"
-);
+const client = new MongoClient(process.env.MONGO_URL);
 client.connect();
 const data = client.db("bluesky").collection("data");
 
