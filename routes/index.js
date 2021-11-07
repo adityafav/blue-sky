@@ -4,13 +4,18 @@ const { MongoClient } = require("mongodb");
 
 require("dotenv").config();
 
-const client = new MongoClient(process.env.MONGO_URL || "mongodb+srv://aditya:aditya@cluster0.3xhxi.mongodb.net");
+const client = new MongoClient(
+  process.env.MONGO_URL ||
+    "mongodb+srv://aditya:aditya@cluster0.3xhxi.mongodb.net"
+);
 client.connect();
 const data = client.db("bluesky").collection("data");
 
 router.get("/countries", async (req, res, next) => {
   let startYear = 1,
-    endYear = 3000;
+    endYear = 3000,
+    page = 0,
+    count = 10;
 
   if (req.query.startYear && parseInt(req.query.startYear) > 0) {
     startYear = parseInt(req.query.startYear);
@@ -20,8 +25,18 @@ router.get("/countries", async (req, res, next) => {
     endYear = parseInt(req.query.endYear);
   }
 
+  if (req.query.page && parseInt(req.query.page) > 0) {
+    page = parseInt(req.query.page);
+  }
+
+  if (req.query.count && parseInt(req.query.count) > 0) {
+    count = parseInt(req.query.count);
+  }
+
   data
     .find({ year: { $gt: startYear - 1, $lt: endYear + 1 } })
+    .skip(page * count)
+    .limit(count)
     .toArray((err, result) => {
       if (err) throw err;
 
@@ -32,7 +47,9 @@ router.get("/countries", async (req, res, next) => {
 router.get("/country/:category", async (req, res, next) => {
   const match_strings = [];
   let startYear = 1,
-    endYear = 3000;
+    endYear = 3000,
+    page = 0,
+    count = 10;
 
   if (req.query.startYear && parseInt(req.query.startYear) > 0) {
     startYear = parseInt(req.query.startYear);
@@ -40,6 +57,14 @@ router.get("/country/:category", async (req, res, next) => {
 
   if (req.query.endYear && parseInt(req.query.endYear) > 0) {
     endYear = parseInt(req.query.endYear);
+  }
+
+  if (req.query.page && parseInt(req.query.page) > 0) {
+    page = parseInt(req.query.page);
+  }
+
+  if (req.query.count && parseInt(req.query.count) > 0) {
+    count = parseInt(req.query.count);
   }
 
   const params = req.params.category.toUpperCase();
@@ -63,6 +88,8 @@ router.get("/country/:category", async (req, res, next) => {
   if (match_strings.length === 0) {
     data
       .find({ year: { $gt: startYear - 1, $lt: endYear + 1 } })
+      .skip(page * count)
+      .limit(count)
       .toArray((err, result) => {
         if (err) throw err;
 
@@ -76,6 +103,8 @@ router.get("/country/:category", async (req, res, next) => {
           { year: { $gt: startYear - 1, $lt: endYear + 1 } },
         ],
       })
+      .skip(page * count)
+      .limit(count)
       .toArray((err, result) => {
         if (err) throw err;
 

@@ -20,19 +20,13 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/explorer', function(req, res, next){
+app.use('/', function(req, res, next){
   swaggerDocument.host = req.get('host');
   req.swaggerDoc = swaggerDocument;
   next();
 }, swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
-// app.use('/explorer', function(req, res, next){
-//   openapiSpecification.host = req.get('host');
-//   req.swaggerDoc = openapiSpecification;
-//   next();
-// }, swaggerUi.serve, swaggerUi.setup(openapiSpecification));
-
-app.use('/', indexRouter);
+app.use('/apis', indexRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

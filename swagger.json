@@ -5,6 +5,7 @@
     "version": "1.0.5",
     "title": "Countries Analytics"
   },
+  "basePath": "/apis",
   "tags": [
     { "name": "countries" }
   ],
@@ -14,6 +15,89 @@
         "tags": ["countries"],
         "produces": ["application/json"],
         "operationId": "getCountries",
+        "parameters": [
+          {
+            "name": "startYear",
+            "in": "query",
+            "description": "Start year to filter by",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "endYear",
+            "in": "query",
+            "description": "End year to filter by",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "Page to filter by",
+            "required": false,
+            "type": "number"
+          },
+          {
+            "name": "count",
+            "in": "query",
+            "description": "Number of entities to be returned",
+            "required": false,
+            "type": "number"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Emission data of various countries",
+            "schema": {
+              "type": "array",
+              "items": { "$ref": "#/definitions/Country" }
+            }
+          }
+        }
+      }
+    },
+    "/country/{id}": {
+      "get": {
+        "tags": ["countries"],
+        "produces": ["application/json"],
+        "operationId": "getCountry",
+        "parameters": [
+          {
+            "name": "category",
+            "in": "path",
+            "description": "Category of emissions",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "startYear",
+            "in": "query",
+            "description": "Start year to filter by",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "endYear",
+            "in": "query",
+            "description": "End year to filter by",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "Page to filter by",
+            "required": false,
+            "type": "number"
+          },
+          {
+            "name": "count",
+            "in": "query",
+            "description": "Number of entities to be returned",
+            "required": false,
+            "type": "number"
+          }
+        ],
         "responses": {
           "200": {
             "description": "Emission data of various countries",
