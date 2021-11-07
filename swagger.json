@@ -1,0 +1,41 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "hey",
+    "version": "1.0.5",
+    "title": "Countries Analytics"
+  },
+  "tags": [
+    { "name": "countries" }
+  ],
+  "paths": {
+    "/countries": {
+      "get": {
+        "tags": ["countries"],
+        "produces": ["application/json"],
+        "operationId": "getCountries",
+        "responses": {
+          "200": {
+            "description": "Emission data of various countries",
+            "schema": {
+              "type": "array",
+              "items": { "$ref": "#/definitions/Country" }
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Country": {
+      "type": "object",
+      "properties": {
+        "_id": { "type": "string"},
+        "country_or_area": { "type": "string" },
+        "year": { "type": "integer" },
+        "value": {"type": "integer"},
+        "category": {"type": "string"}
+      }
+    }
+  }
+}
