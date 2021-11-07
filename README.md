@@ -30,9 +30,9 @@ This API accepts "startYear", "endYear" for narrowing and "page", "count" for pa
 ![All Countries API Response](./screenshots/getAllResponse.png)
 <br/>
 
-#### 4. API for retrieving countries according to params supplied (/country/{id})
+#### 4. API for retrieving countries according to params supplied (/country/{category})
 
-In addition to previous API's query params, this API accepts another {id} path param.
+In addition to previous API's query params, this API accepts another {category} path param.
 To retrieve entities with specific gas emissions, enter the chemical name of that gas as the "category" param.
 For eg: co2 will give all entites with CO2 emissions. The query is letter case insensitive. co2, Co2 and CO2 will return same results.
 
