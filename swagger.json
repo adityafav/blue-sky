@@ -5,7 +5,6 @@
     "version": "1.0.5",
     "title": "Countries Analytics"
   },
-  "basePath": "/apis",
   "tags": [
     { "name": "countries" }
   ],
