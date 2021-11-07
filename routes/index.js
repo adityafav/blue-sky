@@ -8,6 +8,10 @@ const client = new MongoClient(process.env.MONGO_URL);
 client.connect();
 const data = client.db("bluesky").collection("data");
 
+router.get('/', function(req, res, next) {
+  res.render('index', { title: 'Emission Analytics' });
+});
+
 router.get("/countries", async (req, res, next) => {
   let startYear = 1,
     endYear = 3000,
