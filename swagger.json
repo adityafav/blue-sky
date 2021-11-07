@@ -55,7 +55,7 @@
         }
       }
     },
-    "/country/{id}": {
+    "/country/{category}": {
       "get": {
         "tags": ["countries"],
         "produces": ["application/json"],

@@ -33,7 +33,7 @@ This API accepts "startYear", "endYear" for narrowing and "page", "count" for pa
 #### 4. API for retrieving countries according to params supplied (/country/{id})
 
 In addition to previous API's query params, this API accepts another {id} path param.
-To retrieve entities with specific gas emissions, enter the chemical name of that gas as the {id} path param.
+To retrieve entities with specific gas emissions, enter the chemical name of that gas as the "category" param.
 For eg: co2 will give all entites with CO2 emissions. The query is letter case insensitive. co2, Co2 and CO2 will return same results.
 
 For multiple emissions query : co2_n2o, co2 and n2o, co2n2o, CO2_N2o etc are all acceptable.
