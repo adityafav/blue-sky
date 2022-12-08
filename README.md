@@ -6,7 +6,7 @@
 
 ### Introduction
 
-This project retrieves emissions data of variour countries according to the search queries.
+This prototype project retrieves emissions data of various countries in a self-defined database according to the search queries.
 <br/>
 
 ### What this application includes:
